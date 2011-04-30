@@ -1,0 +1,26 @@
+OpenGazer using MacPorts
+========================
+
+This has been tested on a MacBook Pro with built-in iSight camera running OS X
+10.6
+
+1. Download and install the latest version of [MacPorts] (http://www.macports.org/)
+1. Install the following packages from MacPorts. Note that this might take a long time since all these packages have a lot of dependencies:
+  - sudo port install vxl
+  - sudo port install opencv +python26 (_Python variant not strictly necessary but useful for quick experiments_)
+  - sudo port install gtkmm
+  - sudo port install cairomm
+  - sudo port install boost
+1. Follow the instructions in the README
+  - make
+  - ./opengazer
+
+For reference, during my development phase, I was compiling with Apple's GCC (
+gcc version 4.2.1 (Apple Inc. build 5664)). And these are the versions of the software
+that I was using:
+
+  - vxl (@1.14.0)
+  - opencv (@2.2.0)
+  - gtkmm (@2.24.0)
+  - cairomm (@1.8.6)
+  - boost (@1.46.1)
