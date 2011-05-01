@@ -1,39 +1,25 @@
 #pragma once
-#include <gtkmm.h>
 #include "Containers.h"
+#include <string>
+#include <sstream>
+#include <opencv/highgui.h>
 
 /* represents the pointer as a small window and moves that window */
 class WindowPointer {
- public:
-    struct PointerSpec {
+	
+public:
+struct PointerSpec {
 	int width, height;
-	double red, green, blue;
-	PointerSpec(int width, int height, 
-		    double red, double green, double blue);
-    };
- private:
-    class GtkPointerDrawingArea: public Gtk::DrawingArea {
-	PointerSpec spec;
-    public:
-        GtkPointerDrawingArea(const PointerSpec &pointerspec);
-        virtual bool on_expose_event(GdkEventExpose *event);
-    };
-    class GtkPointerWindow: public Gtk::Window {
-        GtkPointerDrawingArea area;
-    public:
-        GtkPointerWindow(const PointerSpec &pointerspec);
-    };  
-    GtkPointerWindow pointerwindow;
- public:
-    WindowPointer(const PointerSpec &pointerspec);
-    void setPosition(int x, int y);
+  int red, green, blue;
+  PointerSpec(int width, int height, int red, int green, int blue);
 };
 
-/* class PointerMark: public Gtk::DrawingArea { */
-/*     virtual bool on_expose_event(GdkEventExpose *event); */
-/* }; */
+private:
+	string name;
 
-/* class CalibrationMark: public Gtk::DrawingArea { */
-/*     virtual bool on_expose_event(GdkEventExpose *event); */
-/* }; */
-
+public:
+	static int windowNumber;
+	
+	WindowPointer(const PointerSpec &pointerspec);
+	void setPosition(int x, int y);
+};

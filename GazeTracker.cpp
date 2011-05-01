@@ -2,15 +2,15 @@
 
 int Targets::getCurrentTarget(Point point) {
     vector<double> distances(targets.size());
-    //    debugtee(targets);
-    transform(targets.begin(), targets.end(), distances.begin(),
-	      sigc::mem_fun(point, &Point::distance));
-    //    debugtee(distances);
+    // To avoid dependencies on sigc++ just for this, we are doing this manually
+    // transform(targets.begin(), targets.end(), distances.begin(), sigc::mem_fun(point, &Point::distance));
+    vector<Point>::iterator first = targets.begin();
+    vector<Point>::iterator last = targets.end();
+    vector<double>::iterator result = distances.begin();
+    while (first != last)
+     *result++ = point.distance(*first++);  // or: *result++=binary_op(*first1++,*first2++);
+    
     return min_element(distances.begin(), distances.end()) - distances.begin();
-//     for(int i=0; i<targets.size(); i++)
-// 	if (point.distance(targets[i]) < 30)
-// 	    return i;
-//     return -1;
 }
 
 

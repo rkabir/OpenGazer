@@ -63,7 +63,14 @@ int Point::closestPoint(const vector<Point> &points) const {
 	return -1;
 
     vector<double> distances(points.size());
-    transform(points.begin(), points.end(), distances.begin(), 
-	      sigc::mem_fun(*this, &Point::distance));
-    return min_element(distances.begin(), distances.end()) - distances.begin();
+
+    // To avoid dependencies on sigc++ just for this, we are doing this manually
+    // transform(points.begin(), points.end(), distances.begin(), sigc::mem_fun(*this, &Point::distance));
+    vector<Point>::const_iterator first = points.begin();
+    vector<Point>::const_iterator last = points.end();
+    vector<double>::iterator result = distances.begin();
+    while (first != last)
+     *result++ = distance(*first++);  // or: *result++=binary_op(*first1++,*first2++);
+
+   return min_element(distances.begin(), distances.end()) - distances.begin();
 }

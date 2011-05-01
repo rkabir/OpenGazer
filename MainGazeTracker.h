@@ -12,8 +12,6 @@ struct CommandLineArguments {
     bool isoption(const char* option);
 };
 
-
-
 class VideoInput {
     CvCapture* capture;
 

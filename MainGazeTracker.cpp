@@ -155,15 +155,14 @@ void MainGazeTracker::addExemplar(Point exemplar) {
 					  tracking->eyex.eyegrey.get());
 }
 
+//TODO: Screen size currently hardcoded
 static vector<Point> scalebyscreen(const vector<Point> &points) {
-    Glib::RefPtr<Gdk::Screen> screen = 
-	Gdk::Display::get_default()->get_default_screen();
-    return Calibrator::scaled(points, screen->get_width(), screen->get_height());
+    return Calibrator::scaled(points, 1680, 1050);
 }
 
 void MainGazeTracker::startCalibration() {
     shared_ptr<WindowPointer> 
-	pointer(new WindowPointer(WindowPointer::PointerSpec(30,30,1,0,0)));
+	pointer(new WindowPointer(WindowPointer::PointerSpec(30,30,255,0,0)));
 
     ifstream calfile("calpoints.txt");
 
@@ -183,7 +182,7 @@ void MainGazeTracker::startTesting() {
 	    points.push_back(Point(x,y));
 
     shared_ptr<WindowPointer> 
-	pointer(new WindowPointer(WindowPointer::PointerSpec(30,30,0,1,0)));
+	pointer(new WindowPointer(WindowPointer::PointerSpec(30,30,0,255,0)));
 
     shared_ptr<MovingTarget> 
 	moving(new MovingTarget(framecount, scalebyscreen(points), pointer));

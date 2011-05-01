@@ -82,8 +82,6 @@ vector<T> loadvector(CvFileStorage *in, CvFileNode *node) {
     return result;
 }
 
-#include <gtkmm.h>
-
 #include "Point.h"
 
 template <class From, class To>

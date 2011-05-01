@@ -2,6 +2,7 @@
 #include "utils.h"
 #include "OutputMethods.h"
 #include "MainGazeTracker.h"
+#include "GtkStore.h"
 
 #define MAIN_WINDOW_NAME "OpenGazer"
 
@@ -12,9 +13,9 @@ static vector<shared_ptr<AbstractStore> > getStores() {
 
   stores.push_back( shared_ptr<AbstractStore>( new SocketStore() ) );
   stores.push_back( shared_ptr<AbstractStore>( new StreamStore(cout) ) );
-  // stores.push_back(shared_ptr<AbstractStore>
-  //   (new WindowStore(WindowPointer::PointerSpec(20, 20, 0, 0, 1),
-  //                   WindowPointer::PointerSpec(30, 30, 1, 0, 1))));
+  stores.push_back( shared_ptr<AbstractStore>
+                     ( new WindowStore( WindowPointer::PointerSpec(30, 30, 0, 0, 255),
+                                       WindowPointer::PointerSpec(30, 30, 255, 0, 255) ) ) );
 
   return stores;
 }
@@ -63,22 +64,21 @@ void mouseClick(int event, int x, int y, int flags, void* param) {
       lastPointId = -1;
 
     if(event == CV_EVENT_LBUTTONDOWN) {
-      if(lastPointId >= 0)
-        tracker.updatetracker(lastPointId, point);
+      if(lastPointId >= 0) tracker.updatetracker(lastPointId, point);
       else {
         tracker.addtracker(point);
       }
-
     }
-    if(event == CV_EVENT_LBUTTONDBLCLK) { 
-      if(lastPointId >= 0)
-        tracker.removetracker(lastPointId);      
+    if(event == CV_EVENT_LBUTTONDBLCLK) {
+      if(lastPointId >= 0) tracker.removetracker(lastPointId);
     }
   }
 }
 
 void createButtons() {
   //Create the buttons
+  //These don't work - they fail to connect the signal
+  //See https://code.ros.org/trac/opencv/ticket/786
   cvCreateButton("Calibrate", calibrateCallbackWrapper);
   cvCreateButton("Test", testCallbackWrapper);
   cvCreateButton("Save Points", savePointsCallbackWrapper);
@@ -109,6 +109,26 @@ int main(int argc, char **argv) {
     drawFrame();
 
     char c = cvWaitKey(33);
+    switch(c) {
+    case 'c':
+      gazeTracker->startCalibration();
+      break;
+    case 't':
+      gazeTracker->startTesting();
+      break;
+    case 's':
+      gazeTracker->savepoints();
+      break;
+    case 'l':
+      gazeTracker->loadpoints();
+      break;
+    case 'x':
+      gazeTracker->clearpoints();
+      break;
+    default:
+      break;
+    }
+
     if(c == 27) break;
   }
 
