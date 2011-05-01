@@ -91,11 +91,11 @@ void registerMouseCallbacks() {
 }
 
 void drawFrame() {
-  cvShowImage( MAIN_WINDOW_NAME, gazeTracker->canvas.get() );
+  cvShowImage(MAIN_WINDOW_NAME, gazeTracker->canvas.get());
 }
 
 int main(int argc, char **argv) {
-  gazeTracker = new MainGazeTracker( argc, argv, getStores() );
+  gazeTracker = new MainGazeTracker(argc, argv, getStores());
 
   cvNamedWindow(MAIN_WINDOW_NAME, CV_GUI_EXPANDED);
   cvResizeWindow(MAIN_WINDOW_NAME, 640, 480);
