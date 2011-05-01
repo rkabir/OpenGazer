@@ -9,9 +9,6 @@ int main(int argc, char **argv)
     Gtk::Main kit(argc, argv);
     Glib::thread_init();
 
-//     CalibrationWindow calwindow;
-//     calwindow.show();
-
     GazeTrackerGtk helloworld(argc, argv);
 
     helloworld.show();
@@ -20,3 +17,6 @@ int main(int argc, char **argv)
     
     return 0;
 }
+
+
+

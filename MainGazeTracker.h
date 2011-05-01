@@ -1,10 +1,8 @@
 #pragma once
 #include "utils.h"
 #include "TrackingSystem.h"
-//#include "Alert.h"
 #include "Calibrator.h"
 #include <opencv/highgui.h>
-#include <gtkmm.h>
 
 struct CommandLineArguments {
     vector<char*> parameters;

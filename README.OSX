@@ -7,7 +7,7 @@ This has been tested on a MacBook Pro with built-in iSight camera running OS X
 1. Download and install the latest version of [MacPorts] (http://www.macports.org/)
 1. Install the following packages from MacPorts. Note that this might take a long time since all these packages have a lot of dependencies:
   - sudo port install vxl
-  - sudo port install opencv +python26 (_Python variant not strictly necessary but useful for quick experiments_)
+  - sudo port install opencv +python26 +qt4 + tbb (_Python variant not strictly necessary but useful for quick experiments; Qt gives you very nice buttons; TBB gives speedup for some tasks on multicore machines_)
   - sudo port install gtkmm
   - sudo port install cairomm
   - sudo port install boost

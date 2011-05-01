@@ -5,7 +5,6 @@
 #include <vector>
 #include <iostream>
 #include <vnl/algo/vnl_svd.h>
-#include <gdkmm.h>
 #include <boost/shared_ptr.hpp>
 #include <boost/scoped_ptr.hpp>
 
@@ -24,8 +23,6 @@ using namespace boost;
 
 typedef vnl_vector<double> Vector;
 typedef vnl_matrix<double> Matrix;
-
-
 
 template <class T>
 inline T square(T a) {

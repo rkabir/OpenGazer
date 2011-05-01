@@ -59,7 +59,6 @@ MainGazeTracker::MainGazeTracker(int argc, char** argv,
 				 const vector<shared_ptr<AbstractStore> > 
 				 &stores): 
     framestoreload(-1), stores(stores), autoreload(false)
-//     , statemachine(shared_ptr<AlertWindow>(new AlertWindow("start")))
 {
     CommandLineArguments args(argc, argv);
 
@@ -70,8 +69,6 @@ MainGazeTracker::MainGazeTracker(int argc, char** argv,
     }
     else {
 	videoinput.reset(new VideoInput(args.parameters[0]));
-// 	if (args.parameters.size() >= 2)
-// 	    fileinput.reset(new FileInput(parameters[1]));
     }
 
 
@@ -118,7 +115,7 @@ void MainGazeTracker::doprocessing(void) {
 	video->write(frame);
 
     canvas->origin = frame->origin;
-    cvCopy( frame, canvas.get(), 0 );
+    cvCopy(frame, canvas.get(), 0);
 
     try {
 	tracking->doprocessing(frame, canvas.get());

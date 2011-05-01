@@ -3,7 +3,6 @@
 #include <opencv/highgui.h>
 #include <fstream>
 
-
 PointTracker::PointTracker(const CvSize &size):
     flags(CV_LKFLOW_INITIAL_GUESSES),
     grey(cvCreateImage(size, 8, 1)),
