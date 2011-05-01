@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'MacGameExample' target in the 'MacGameExample' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
