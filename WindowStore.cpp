@@ -1,4 +1,4 @@
-#include "GtkStore.h"
+#include "WindowStore.h"
 
 WindowStore::WindowStore(const WindowPointer::PointerSpec& pointerspec,
 			 const WindowPointer::PointerSpec& targetspec):
