@@ -11,9 +11,9 @@ MainGazeTracker* gazeTracker;
 static vector<shared_ptr<AbstractStore> > getStores() {
   vector<shared_ptr<AbstractStore> > stores;
 
-  stores.push_back( shared_ptr<AbstractStore>( new SocketStore() ) );
-  stores.push_back( shared_ptr<AbstractStore>( new StreamStore(cout) ) );
-  stores.push_back( shared_ptr<AbstractStore>
+  stores.push_back(shared_ptr<AbstractStore>(new SocketStore()));
+  stores.push_back(shared_ptr<AbstractStore>(new StreamStore(cout)));
+  stores.push_back(shared_ptr<AbstractStore>
                      ( new WindowStore( WindowPointer::PointerSpec(60, 60, 0, 0, 255),
                                        WindowPointer::PointerSpec(60, 60, 250, 0, 250) ) ) );
 
