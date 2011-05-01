@@ -1,76 +1,38 @@
-Download:
+OpenGazer using MacPorts
+========================
 
-1. Tarball from 
+This has been tested on a MacBook Pro with built-in iSight camera running OS X
+10.6
 
-   http://www.inference.phy.cam.ac.uk/opengazer/
+1. Download and install the latest version of [MacPorts] (http://www.macports.org/)
+1. Install the following packages from MacPorts. Note that this might take a long time since all these packages have a lot of dependencies:
+  - sudo port install vxl
+  - sudo port install opencv +python26 +qt4 + tbb (_Python variant not strictly necessary but useful for quick experiments; Qt gives you very nice buttons; TBB gives speedup for some tasks on multicore machines_)
+  - sudo port install boost
 
-2. Or from sourceforge 
+For reference, during my development phase, I was compiling with Apple's GCC (
+gcc version 4.2.1 (Apple Inc. build 5664)). And these are the versions of the software
+that I was using:
 
-   http://sourceforge.net/projects/opengazer
+  - vxl (@1.14.0)
+  - opencv (@2.2.0)
+  - boost (@1.46.1)
 
-   $ svn co https://opengazer.svn.sourceforge.net/svnroot/opengazer
+Instructions
+------------
 
-Requirements:
-  vxl >= 1.5.1	        http://vxl.sourceforge.net/
-  opencv >= 0.9.7	http://sourceforge.net/projects/opencvlibrary
-  gtkmm-2.4 >= 2.8.0	http://www.gtkmm.org/
-  cairomm-1.0 >= 0.6.0  http://cairographics.org/cairomm/
-  boost >= 1.32.0	http://www.boost.org/
-	
-Under Debian testing:
-
-  # apt-get install libcv-dev libhighgui-dev libcvaux-dev \
-    	    	    libgtkmm-2.4-dev libcairomm-1.0-dev libboost-dev
-
-  (vxl must be installed from the source)		    
-  Important: in vxl's ccmake, set BUILD_SHARED_LIBS to ON.
-
-Compilation:
-
-  > tar xzf opengazer-0.1.tar.gz 
-  > cd opengazer-0.1
-
-  Edit the VXLDIR variable in the Makefile to point to your vxl
-  include headers
-
-  > make 
-
-  Define the variable LD_LIBRARY_PATH to point to your vxl shared libraries
-
-  > export LD_LIBRARY_PATH=$VXLDIR/lib
-
-Instructions:
-
-0. Make sure that you have read access to webcam device file
-   (/dev/video0).  In Debian/Ubuntu you can achieve that by adding
-   yourself to the video group
-
-   > sudo addgroup $USER video
-
-   Then logout and login again (important).
-
-1. Set up the drivers to your camera correctly.  Put the camera into
-   640x480 mode.  With pwc drivers you have to say
-
-   > sudo rmmod pwc
-   > sudo modprobe pwc size=vga
+1. If you are using MacPorts, the Makefile should work properly. If you are
+   using a different system, please check to see that the locations to the 
+   header files and libraries are correct.
 
 2. Put the camera centrally under you monitor, so that the height of
    your face in the image is about half of the height of the image,
    and close to the centre of the image.  Make sure the background
    light level is reasonably constant across the image.
 
-3. Make VXLDIR point to your vxl libraries, for example 
+3. Start the opengazerHighGui program
 
-   > export VXLDIR=/opt
-
-   Define the variable LD_LIBRARY_PATH to point to your vxl shared libraries
-
-   > export LD_LIBRARY_PATH=$VXLDIR/lib:$LD_LIBRARY_PATH
-
-   Start the opengazer program
-
-   > ./opengazer
+   > ./opengazerHighGui
 
 4. While keeping your head still, use the mouse to select points on
    your face that will be used to track your head.  The first two
@@ -105,9 +67,8 @@ Instructions:
 7. During the calibration and afterwards, a small blue will indicate
    the estimated position of your gaze focus.
 
-
-
-DEVELOPING OPENGAZER
+Developing OpenGazer
+--------------------
 
 1. The coordinates of the calibration points are stored in
    "calpoints.txt".  Feel free to change them.  For example, by having
