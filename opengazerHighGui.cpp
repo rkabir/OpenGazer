@@ -2,7 +2,7 @@
 #include "utils.h"
 #include "OutputMethods.h"
 #include "MainGazeTracker.h"
-#include "GtkStore.h"
+#include "WindowStore.h"
 
 #define MAIN_WINDOW_NAME "OpenGazer"
 
@@ -14,8 +14,8 @@ static vector<shared_ptr<AbstractStore> > getStores() {
   stores.push_back( shared_ptr<AbstractStore>( new SocketStore() ) );
   stores.push_back( shared_ptr<AbstractStore>( new StreamStore(cout) ) );
   stores.push_back( shared_ptr<AbstractStore>
-                     ( new WindowStore( WindowPointer::PointerSpec(30, 30, 0, 0, 255),
-                                       WindowPointer::PointerSpec(30, 30, 255, 0, 255) ) ) );
+                     ( new WindowStore( WindowPointer::PointerSpec(60, 60, 0, 0, 255),
+                                       WindowPointer::PointerSpec(60, 60, 250, 0, 250) ) ) );
 
   return stores;
 }

@@ -18,8 +18,6 @@ public:
     }
 };
 
-
-
 CommandLineArguments::CommandLineArguments(int argc, char** argv) {
     for(int i=1; i<argc; i++) {
 	if (argv[i][0] == '-') 
@@ -162,7 +160,7 @@ static vector<Point> scalebyscreen(const vector<Point> &points) {
 
 void MainGazeTracker::startCalibration() {
     shared_ptr<WindowPointer> 
-	pointer(new WindowPointer(WindowPointer::PointerSpec(30,30,255,0,0)));
+	pointer(new WindowPointer(WindowPointer::PointerSpec(60,60,255,0,0)));
 
     ifstream calfile("calpoints.txt");
 
@@ -182,7 +180,7 @@ void MainGazeTracker::startTesting() {
 	    points.push_back(Point(x,y));
 
     shared_ptr<WindowPointer> 
-	pointer(new WindowPointer(WindowPointer::PointerSpec(30,30,0,255,0)));
+	pointer(new WindowPointer(WindowPointer::PointerSpec(60,60,0,255,0)));
 
     shared_ptr<MovingTarget> 
 	moving(new MovingTarget(framecount, scalebyscreen(points), pointer));

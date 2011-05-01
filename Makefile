@@ -13,7 +13,7 @@ INCLUDES = $(foreach prefix,/opt/local/include $(VXLDIR)/include $(VXLDIR)/inclu
 # -lcv0.9.7 -lhighgui0.9.7
 # -lvgui
 
-sourcesHighGui = opengazerHighGui.cpp Calibrator.cpp HeadTracker.cpp LeastSquares.cpp EyeExtractor.cpp GazeTracker.cpp MainGazeTracker.cpp OutputMethods.cpp PointTracker.cpp FaceDetector.cpp TrackingSystem.cpp GtkStore.cpp Containers.cpp GraphicalPointer.cpp Point.cpp utils.cpp BlinkDetector.cpp FeatureDetector.cpp 
+sourcesHighGui = opengazerHighGui.cpp Calibrator.cpp HeadTracker.cpp LeastSquares.cpp EyeExtractor.cpp GazeTracker.cpp MainGazeTracker.cpp OutputMethods.cpp PointTracker.cpp FaceDetector.cpp TrackingSystem.cpp WindowStore.cpp Containers.cpp GraphicalPointer.cpp Point.cpp utils.cpp BlinkDetector.cpp FeatureDetector.cpp 
 
 objectsHighGui = $(patsubst %.cpp,%.o,$(sourcesHighGui))
 
@@ -27,6 +27,9 @@ opengazerHighGui: 	$(objectsHighGui)
 		g++ $(CPPFLAGS) -o $@ `pkg-config cairomm-1.0 opencv gtkmm-2.4 --libs`  $(LINKER) $^
 
 include $(patsubst %.cpp,%.o.depends,$(sources))
+
+clean:
+	rm -rf opengazerHighGui *.o *.o.depends
 
 TAGS: always
 	etags *.cpp *.h
