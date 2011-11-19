@@ -1,6 +1,5 @@
 *.o.depends
 opengazer
-opengazerHighGui
 points.txt
 tracker-orig-grey.png
 tracker-orig-points.txt
