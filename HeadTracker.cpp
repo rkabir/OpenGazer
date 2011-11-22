@@ -1,5 +1,5 @@
 #include "HeadTracker.h"
-#include "FMatrixAffineCompute.cpp"
+#include "FMatrixAffineCompute.h"
 
 static double squarenorm(HomPoint point) {
     return square(point.x()) + square(point.y());

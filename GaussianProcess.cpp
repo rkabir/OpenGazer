@@ -1,4 +1,7 @@
 #include <vnl/algo/vnl_cholesky.h>
+#include <vector>
+#include "utils.h"
+
 
 class MultiGaussian {
 public:

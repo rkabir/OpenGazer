@@ -1,4 +1,6 @@
 #include "LeastSquares.h"
+#include "HeadTracker.h"
+#include "Point.h"
 
 class HeadCompensation {
     LeastSquares xparams, yparams;

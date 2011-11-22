@@ -1,4 +1,8 @@
 #include <vnl/algo/vnl_svd.h>
+#include <vector>
+#include "utils.h"
+#include "PointTracker.h"
+#include "FMatrixAffineCompute.h"
 
 template <class T>
 

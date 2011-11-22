@@ -3,6 +3,7 @@
 #include <opencv/cv.h>
 #include <vector>
 #include "PointTracker.h"
+#include "FMatrixAffineCompute.h"
 
 using namespace std;
 
